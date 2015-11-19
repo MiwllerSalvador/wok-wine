@@ -1,10 +1,20 @@
-class Profile < ActiveRecord::Base
+class Profile < ActiveRecord::Base 
 
-  belongs_to :user  
+  belongs_to :user   
 
-  def full_name
+  has_attached_file :avatar,   
 
-      self.first_name + " " + self.last_name
+    styles: { thumb: '100x100>', medium: '300x300>'},   
+
+    default_url: '/images/:style/missing.png' 
+
+  validates_attachment :avatar,   
+
+    content_type: { content_type: ['image/jpeg', 'image/png', 'image/gif'] } 
+
+  def full_name     
+
+    self.first_name + " " + self.last_name 
 
   end
 
