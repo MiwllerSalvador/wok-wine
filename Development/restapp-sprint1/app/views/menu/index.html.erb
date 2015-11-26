@@ -1,0 +1,43 @@
+<h1>Our Menu</h1>
+
+
+<% @categories.each do |category| %>
+
+  <div class="page-header">
+
+    <h2><%= link_to category.name, menu_category_path(category) %><%= " " %><small><%= category.description %></small></h2>
+
+   </div>
+
+  <% if category.products %>
+
+    <div class="row">
+
+      <% category.products.each do |product| %> 
+
+         <div class="col-sm-6 col-md-4">
+
+           <div class="thumbnail">
+
+             <%= image_tag product.picture.url(:medium), class: "img-responsive" %>
+
+             <div class="caption">
+
+               <h4><%= product.name %></h4>
+
+               <p><%= product.description %></p> 
+
+             </div>
+
+           </div>
+
+         </div> 
+
+      <% end %>
+
+     </div>
+
+  <% end %>
+
+<% end %>
+
